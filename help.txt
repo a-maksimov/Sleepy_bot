@@ -17,3 +17,5 @@ btc - <delta> Average USD market price historical chart across major bitcoin exc
 weirdal - Random Weird Al Yankovic music video
 rip - [youtube url] <db> Rip an .mp3 file from youtube (or some other sites) and optionally add it to database
 likezor - [download] <twitter username without @>': 'Download likes of a Twitter user, i.e. /likezor download gaestlic'
+likezor - [register] <twitter username without @>': 'Subscribe to new Likes of a Twitter user, i.e. /likezor register gaestlic'
+likezor - [subscribe] <telegram name without @>': 'Subscribe telegram user to Likezor, i.e. /likezor subscribe gaestlic'
