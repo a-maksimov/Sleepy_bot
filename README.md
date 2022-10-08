@@ -8,13 +8,9 @@ start - Get used to the bot
 
 help - Gives you information about the available commands
 
-temperature - Shows current temperature in my kitchen
-
 song - <username> <integer> A list of songs submitted by <username>, i.e. /song username 3
   
 sotd - Song of the day
-  
-cotd - Cartoon of the day
   
 smbc - Recent Saturday Morning Breakfast Cereal (SMBC)
   
@@ -23,7 +19,6 @@ xkcd - Recent XKCD
 phd - Recent PhD comic
   
 dilbert - Recent Dilbert by Scott Adams
-  
 
 calvin - Random Calvin and Hobbes by Bill Watterson
 
