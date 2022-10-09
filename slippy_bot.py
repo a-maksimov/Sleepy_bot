@@ -39,8 +39,8 @@ commands = {  # command description used in the "help" command
 # Keyboard.add('')
 # hideKeyboard = types.ReplyKeyboardRemove()  # if sent as reply_markup, will hide the keyboard
 
-logger = telebot.logger
-telebot.logger.setLevel(logging.DEBUG)  # Outputs debug messages to console
+# logger = telebot.logger
+# telebot.logger.setLevel(logging.DEBUG)  # Outputs debug messages to console
 
 
 # telebot.apihelper.proxy = {

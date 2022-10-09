@@ -7,10 +7,10 @@ import slippy_bot
 from SQLighter import SQLighter
 
 # Twitter:
-consumer_key = '<API_key>'
-consumer_secret = '<API_secret>'
-access_token_key = '<Access_token_key>'
-access_token_secret = '<Access_token_secret>'
+consumer_key = '<insert api token>'
+consumer_secret = '<insert api secret>'
+access_token_key = '<insert access token>'
+access_token_secret = '<insert access secret>'
 
 api = twitter.Api(consumer_key=consumer_key,
                   consumer_secret=consumer_secret,
@@ -56,11 +56,17 @@ def likezor(bot, message):
                         filepath = os.path.join(os.getcwd(), "likezor")
                         if not os.path.exists(filepath):
                             os.mkdir(filepath)
+                            print("folder for likezor created")
+                        else:
+                            print("folder likezor already exists")
                         file = os.path.join(filepath, api_account.screen_name + "_chain.csv")
                         with open(file, "w+") as like_id_chain:
+                            print("saving initial likes to file: " + file)
                             for i in range(0, len(api_like)):
                                 like_id = api_like[i].id
                                 like_id_chain.write(str(like_id) + ", ")
+                            if os.path.exists(file):
+                                print("file with initial likes: " + file + " was created")
                         bot.send_message(message.chat.id,
                                          "Twitter user " + api_account.screen_name + " was successfully registered.",
                                          reply_to_message_id=message.message_id)
@@ -258,14 +264,23 @@ def likezor_announce():
             #             print("api likes: " + str(api_likes_list))
             # file with previous likes
             file = os.path.join(os.getcwd(), "likezor", api_account.screen_name + "_chain.csv")
+            if os.path.exists(file):
+                print("file with previous likes: " + file + " exists")
             # checking if any of downloaded ids is not in file with previous likes
             for n, item in enumerate(api_likes_list):
                 if str(item) not in open(file, "r").read():
                     print("new like found: " + api_likes[n].user.screen_name + " " + api_likes[n].id_str)
+                    print("opening file with previous likes: " + file)
                     open(file).close()
-                    # append new found like to file so that it won't count as difference on next iteration
+                    # append new found like to file so that it won't count as difference on next d iteration
                     with open(file, "a") as old_likes:
+                        print("appending new likes to: " + file)
                         old_likes.write(api_likes[n].id_str + ", ")
+                    #                     with open(file, "r") as old_likes:
+                    #                         print(old_likes.read())
+                    # broadcast found new like
+                    #                     if screen_names[i] == 'gaestlic':
+                    #                         bot.send_message(GROUP_ID,"{} liked tweet by @{}:\n".format(screen_names[i],api_likes[n].user.screen_name) + "https://twitter.com/{}/status/{}".format(api_likes[n].user.screen_name,api_likes[n].id_str))
                     likezor_broadcast(screen_names[i], "{} liked tweet by @{}:\n".format(screen_names[i], api_likes[
                         n].user.screen_name) + "https://twitter.com/{}/status/{}".format(api_likes[n].user.screen_name,
                                                                                          api_likes[n].id_str))
