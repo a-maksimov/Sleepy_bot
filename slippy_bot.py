@@ -16,6 +16,7 @@ commands = {  # command description used in the "help" command
     'start': 'Get used to the bot',
     'help': 'Gives you information about the available commands',
     # 'temperature': 'Shows current temperature in my kitchen',
+    'guess': 'Числовая угадайка',
     'song': 'A random song from the database',
     'song [username] <integer>': 'A list of songs submitted by [username], i.e. /song username 3',
     'sotd': 'Links a song of the day',
@@ -34,6 +35,7 @@ commands = {  # command description used in the "help" command
     'rip [youtube url] <db>': 'Rip an .mp3 file from youtube and optionally add it to database',
     'likezor [download] <twitter username without @>': 'Download likes of a Twitter user, i.e. /likezor download gaestlic'
 }
+
 
 # Keyboard = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
 # Keyboard.add('')
@@ -79,6 +81,7 @@ import likezor_plugin
 import btc_plugin
 import yankovic_plugin
 import rip_plugin
+import mini_project_number_guess
 
 bot.remove_webhook()
 
@@ -198,9 +201,14 @@ def rip(message):
     rip_plugin.rip(bot, message)
 
 
+@bot.message_handler(commands=['guess'])
+def guess(message):
+    mini_project_number_guess.guess(bot, message)
+
+
 @bot.message_handler(content_types=['document'])
 def handle_docs_audio(message):
-    ##    bot.reply_to(message, "Sorry, I don't work with documents.")
+    #    bot.reply_to(message, "Sorry, I don't work with documents.")
     pass
 
 
@@ -208,7 +216,7 @@ def handle_docs_audio(message):
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def command_default(m):
     # this is the standard reply to a normal message
-    ##    bot.send_message(m.chat.id, "I don't understand \"" + m.text + "\"\nMaybe try the help page at /help")
+    #    bot.send_message(m.chat.id, "I don't understand \"" + m.text + "\"\nMaybe try the help page at /help")
     pass
 
 
