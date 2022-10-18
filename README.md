@@ -10,6 +10,8 @@ help - Gives you information about the available commands
 
 guess - Числовая угадайка
 
+hangman - Игра в виселицу
+
 song - <username> <integer> A list of songs submitted by <username>, i.e. /song username 3
   
 sotd - Song of the day

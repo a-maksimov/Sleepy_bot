@@ -12,11 +12,31 @@ import time
 import datetime
 import logging
 
+# bot plugins
+import start
+# import temperature
+import audio
+import sotd_song
+# import cotd_plugin
+import announce
+import roll
+import webcomics
+import slap_plugin
+import likezor_plugin
+import btc_plugin
+import yankovic_plugin
+import rip_plugin
+import mini_project_number_guess
+import mini_project_magic_ball
+import mini_project_hangman
+
 commands = {  # command description used in the "help" command
     'start': 'Get used to the bot',
     'help': 'Gives you information about the available commands',
     # 'temperature': 'Shows current temperature in my kitchen',
     'guess': 'Числовая угадайка',
+    'ball': 'Магический шар',
+    'hangman': 'Игра в Виселицу',
     'song': 'A random song from the database',
     'song [username] <integer>': 'A list of songs submitted by [username], i.e. /song username 3',
     'sotd': 'Links a song of the day',
@@ -66,25 +86,7 @@ def listener(messages):
 
 
 bot = telebot.TeleBot(config.token)
-
-# bot plugins
-import start
-# import temperature
-import audio
-import sotd_song
-# import cotd_plugin
-import announce
-import roll
-import webcomics
-import slap_plugin
-import likezor_plugin
-import btc_plugin
-import yankovic_plugin
-import rip_plugin
-import mini_project_number_guess
-
 bot.remove_webhook()
-
 bot.set_update_listener(listener)  # register listener
 
 
@@ -204,6 +206,16 @@ def rip(message):
 @bot.message_handler(commands=['guess'])
 def guess(message):
     mini_project_number_guess.guess(bot, message)
+
+
+@bot.message_handler(commands=['ball'])
+def ball(message):
+    mini_project_magic_ball.ball(bot, message)
+
+
+@bot.message_handler(commands=['hangman'])
+def hangman(message):
+    mini_project_hangman.play_hangman(bot, message)
 
 
 @bot.message_handler(content_types=['document'])
