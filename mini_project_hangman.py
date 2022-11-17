@@ -178,7 +178,7 @@ def check_letter(word, letter, string):
     return string
 
 
-def check_word(message, bot, word, guess_word, string):
+def check_word(message, bot, word, guess_word):
     # проверяем, что длина опробованного слова равна длине задуманного слова
     if not len(guess_word) == len(word):
         if len(guess_word) == 1:  # если длина слова 1, то это буква, поэтому выходим из функции со значением 0
@@ -292,7 +292,7 @@ def step_set_guess(message, bot, word, word_completion, guessed_letters, guessed
                 guessed_words.append(guess)  # добавляем новое слово в список попробованных слов
 
                 # переходим в проверку слова
-                check_w = check_word(message, bot, word, guess, word_completion)
+                check_w = check_word(message, bot, word, guess)
                 if check_w == 0:  # если слово совпало с загаданным
                     bot.send_message(message.chat.id, 'Правильно!',
                                      reply_to_message_id=message.message_id)
@@ -360,7 +360,8 @@ def step_set_guess(message, bot, word, word_completion, guessed_letters, guessed
                 else:
                     word_completion = word_completion_updated  # дополняем строку угаданными буквами
                     bot.send_message(message.chat.id, char_spread(word_completion).capitalize())
-                if word_completion.lower() == word.lower():  # если модицифированная сторка совпала с загаданным словом -- победа!
+                if word_completion.lower() == word.lower():  # если модифицированная строка совпала с загаданным
+                    # словом -- победа!
                     guessed = True
                     check_guessed(message, bot, guessed, tries)
                 else:
